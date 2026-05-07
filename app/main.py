@@ -1,13 +1,6 @@
 from fastapi import FastAPI
-
+from app.api.v01.files import router as files_router
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+app.include_router(files_router, prefix="/api/v1", tags=["files"])
