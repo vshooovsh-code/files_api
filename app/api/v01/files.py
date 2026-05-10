@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter, Depends, Query
 
-from app.schemas.file import FileStatisticResponse
+from app.schemas.files import FileStatisticResponse
 from app.services import files as service_files
 
 router = APIRouter()
