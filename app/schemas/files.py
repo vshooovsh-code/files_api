@@ -6,13 +6,14 @@ from pydantic import BaseModel, ConfigDict
 class FileStatisticDetailsResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    chars_stat: dict
+    rows_count: int
+    stat: dict
 
 
 class FileStatisticResponse(BaseModel):
     model_config = {'from_attributes': True}
 
     name: str
-    rows_count: int
     read_success: bool
+    message: str
     stat: FileStatisticDetailsResponse

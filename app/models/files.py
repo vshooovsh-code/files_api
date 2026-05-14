@@ -1,15 +1,20 @@
 class FileStatisticDetails:
-    chars_stat: dict
+    rows_count: int
+    stat: dict
 
     def __init__(self):
-        self.chars_stat = {}
+        self.stat = {}
+        self.rows_count = 0
 
 
 class FileStatistic:
     name: str
-    rows_count: int
-    rows_total: bool
+    read_success: bool
+    message: str
     stat: FileStatisticDetails
 
     def __init__(self, name: str) -> None:
         self.name: str = name
+        self.read_success = False
+        self.message = ""
+        self.stat = FileStatisticDetails()
