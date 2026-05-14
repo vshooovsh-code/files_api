@@ -1,3 +1,5 @@
+from collections import Counter
+
 from app.models.files import FileStatistic, FileStatisticDetails
 
 
@@ -10,11 +12,16 @@ def read_file_get_statistic(name: str) -> FileStatistic | None:
     fs = FileStatistic(name)
     try:
         with open(name, "r") as file:
+            txt = ''
             for line in file:
-                # line.strip() удаляет лишние пробелы и символы переноса строки \n
-                line = line.strip()
+                txt = txt + line
+                fs.stat.rows_count =+1
+
+            chars = dict(Counter(txt))
+            fs.stat.stat = {'char_stat': chars, 'words_stat': 'None'}
 
         fs.read_success = True
+        fs.message = 'Success'
         return fs
 
     except FileNotFoundError:
